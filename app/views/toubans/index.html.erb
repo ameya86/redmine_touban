@@ -1,0 +1,46 @@
+<div class="contextual">
+  <%= link_to(l(:label_touban_new), {:controller => 'toubans', :action => 'new', :project_id => @project}, :class => 'icon icon-add') %>
+</div>
+
+<h2><%= l(:label_touban) %></h3>
+
+<table class="list" style="width: auto;">
+<thead>
+  <tr>
+    <th><%= l(:field_name) %></th>
+    <th style="width: 30%;"><%= l(:field_description) %></th>
+    <th><%= l(:field_touban_user) %></th>
+    <th style="width: 36px;"></th>
+    <th class="buttons"></th>
+  </tr>
+</thead>
+<tbody>
+<% @toubans.each do |touban| %>
+  <tr class="<%= cycle('even', 'odd') %>">
+    <td><%= touban.name %></td>
+    <td><%= textilizable(touban, :description) %></td>
+    <td><%= raw touban.today_touban.collect{|t| "<span style='font-weight: bold;'>#{h(t[1])}</span> - #{h(t[0])}"}.join('<br />') %></tD>
+    <td style="text-align: center; width: 36px;">
+      <%= link_to(image_tag('1uparrow.png'),
+                            {:controller => 'toubans', :action => 'prev', :id => touban.id, :project_id => @project},
+                            :title => l(:text_touban_prev), :method => 'post') %>
+      <%= link_to(image_tag('1downarrow.png'),
+                            {:controller => 'toubans', :action => 'next', :id => touban.id, :project_id => @project},
+                            :title => l(:text_touban_next), :method => 'post') %>
+    </td>
+    <td class="buttons">
+      <%= link_to(l(:button_edit),
+                  {:controller => 'toubans', :action => 'edit', :project_id => @project, :id => touban.id},
+                   :class => 'icon icon-edit') %>
+      <%= link_to(l(:button_delete),
+                  {:controller => 'toubans', :action => 'destroy', :project_id => @project, :id => touban.id},
+                   :class => 'icon icon-del', :method => 'post',
+                   :confirm => l(:text_are_you_sure)) %>
+    </td>
+  </tr>
+<% end %>
+<% reset_cycle %>
+</tbody>
+</table>
+
+<% html_title("#{@project.name} - #{l(:label_touban)}") %>

@@ -1,0 +1,13 @@
+<h2>
+  <%= link_to(l(:label_touban), {:controller => 'toubans', :action => 'index', :project_id => @project}) %>
+  &#187;
+  <%= link_to(@touban.name, {:controller => 'toubans', :action => 'show', :project_id => @project, :id => @touban.id}) %>
+  &#187;
+  <%= l(:button_edit) %>
+</h2>
+
+<%= form_tag({:controller => 'toubans', :action => 'edit', :id => @touban.id, :project_id => @project}) do %>
+  <%= render(:partial => 'toubans/form') %>
+
+  <%= button_to_function(l(:button_update), "selectAllOptions('touban_user_ids'); form.submit();") %>
+<% end %>

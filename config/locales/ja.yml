@@ -1,0 +1,23 @@
+ja:
+  label_touban: 当番表
+  label_touban_new: 新しい当番を作成する
+
+  field_touban: 当番
+  field_touban_user: 当番
+  field_touban_tasks: 役割
+  field_touban_step: ステップ
+
+  field_touban_members: プロジェクトのメンバー
+  field_touban_users: 当番のユーザ
+
+  text_touban_prev: 当番を次に進める
+  text_touban_next: 当番を前に戻す
+
+  notice_touban_users: 右の欄に、当番になるメンバーを入れてください。上下矢印で順番を変更できます。
+  notice_touban_tasks: 割り当てる作業を改行区切りで書いてください。空行は「作業なし」扱いになります。
+  notice_touban_step: 当番を動かす際に指定数動かします。
+
+  project_module_touban: "当番表 - 朝会の進行役などの当番を管理できます。"
+
+  permission_view_touban: 当番表の表示
+  permission_edit_touban: 当番表の編集

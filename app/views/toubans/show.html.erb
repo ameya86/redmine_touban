@@ -1,0 +1,30 @@
+<h2>
+  <%= link_to(l(:label_touban), {:controller => 'toubans', :action => 'index', :project_id => @project}) %>
+  &#187;
+  <%= @touban.name %>
+</h2>
+
+<div class="box tabular">
+  <p>
+    <label><%= l(:field_name) %></label>
+    <%= @touban.name %>
+  </p>
+
+  <p>
+    <label><%= l(:field_touban_users) %></label>
+    <%= raw @touban.users.collect{|u| h(u.name)}.join('<br />') %>
+  </p>
+
+  <p>
+    <label><%= l(:field_touban_tasks) %></label>
+     <%= raw h(@touban.tasks).gsub(/\r?\n/, '<br />') %>
+  </p>
+
+  <p>
+    <label><%= l(:field_touban_step) %></label>
+    <%= @touban.step %>
+  </p>
+
+  <h4><%= l(:field_description) %></h4>
+  <%= textilizable(@touban, :description) %>
+</div>

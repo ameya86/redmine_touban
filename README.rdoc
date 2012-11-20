@@ -1,0 +1,38 @@
+= Touban
+
+朝会のファシリテータなどの当番を管理するためのプラグインです。
+Redmine2.1.0、MySQL5.1、CentOS6.0、Appache、Passengerの環境で動作確認しています。
+
+
+== インストール
+
+1. RAILS_ROOT/pluginsに配置する。
+
+2. rake db:migrate_plugins RAILS_ENV=production
+   を実行する。
+
+3. Redmineを再起動する。
+
+
+
+== アンインストール
+
+1. rake db:migrate:plugin RAILS_ENV=production VERSION=0 NAME=redmine_touban
+   を実行する。
+
+2. RAILS_ROOT/pluginsから削除する。
+
+3. Redmineを再起動する。
+
+
+== 備考
+
+crontab用に、コマンドラインから当番を次に回すコマンドを用意したい。
+
+
+== 更新履歴
+
+=== Version 0,0,1
+
+未完成版。
+自己責任でどうぞ。

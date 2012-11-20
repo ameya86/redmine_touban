@@ -1,0 +1,63 @@
+<%= error_messages_for 'touban' %>
+
+<% content_for :header_tags do %>
+<%= javascript_include_tag 'select_list_move' %>
+<% end %>
+
+<div class="box tabular">
+  <p>
+    <label><%= l(:field_name) %><span class="required">*</span></label>
+    <%= text_field_tag('touban[name]', @touban.name, :size => 50) %>
+  </p>
+
+  <p>
+    <label><%= l(:field_description) %></label>
+    <%= text_area_tag('touban[description]', @touban.description, :cols => 80, :rows => 5) %>
+  </p>
+
+  <table>
+    <tbody>
+      <tr>
+        <td style="width: 170px; font-weight: bold; text-align: right;"><%= l(:field_user) %></td>
+        <td>
+          <small><%= l(:field_touban_members) %></small><br />
+          <%= select_tag('project_members',
+                         options_for_select((@project.principals - @touban.users).collect{|p| [p.name, p.id.to_s]}),
+                         :multiple => true, :style => 'width: 150px; height: 100px;') %>
+        </td>
+        <td>
+          <%= button_to_function(raw('&#8594;'), 'moveOptions(this.form.project_members, this.form.touban_user_ids);') %><br />
+          <%= button_to_function(raw('&#8592;'), 'moveOptions(this.form.touban_user_ids, this.form.project_members);') %><br />
+        </td>
+        <td>
+          <small><%= l(:field_touban_users) %></small><br />
+          <%= select_tag('touban[user_ids]',
+                         options_for_select(@touban.users.collect{|u| [u.name, u.id.to_s]}),
+                         :multiple => true, :style => 'width: 150px; height: 100px;') %>
+        </td>
+        <td>
+          <%= button_to_function(raw('&#8593;'), 'moveOptionUp(this.form.touban_user_ids);') %><br />
+          <%= button_to_function(raw('&#8595;'), 'moveOptionDown(this.form.touban_user_ids);') %>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td colspan="4"><small><%= l(:notice_touban_users) %></small</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    <label><%= l(:field_touban_tasks) %><span class="required">*</span></label>
+    <%= text_area_tag('touban[tasks]', (@touban.tasks || []).join("\n"), :cols => 50, :rows => 5) %>
+    <br /><small><%= l(:notice_touban_tasks) %></small>
+  </p>
+
+  <p>
+    <label><%= l(:field_touban_step) %><span class="required">*</span></label>
+     <%= text_field_tag('touban[step]', @touban.step, :size => 4) %>
+     <br /><small><%= l(:notice_touban_step) %></small>
+  </p>
+</div>
+
+<%= wikitoolbar_for 'touban_description' %>

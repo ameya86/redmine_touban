@@ -1,0 +1,11 @@
+<h2>
+  <%= link_to(l(:label_touban), {:controller => 'toubans', :action => 'index', :project_id => @project}) %>
+  &#187;
+  <%= l(:label_touban_new) %>
+</h2>
+
+<%= form_tag({:controller => 'toubans', :action => 'new', :project_id => @project}) do %>
+  <%= render(:partial => 'toubans/form') %>
+
+  <%= button_to_function(l(:button_create), "selectAllOptions('touban_user_ids'); form.submit();") %>
+<% end %>
